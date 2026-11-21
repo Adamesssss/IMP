@@ -1,0 +1,83 @@
+Table Users {
+  Id integer [pk, increment]
+  Email varchar [not null, unique]
+  PasswordHash varchar [not null]
+  DisplayName varchar [not null]
+  Role varchar [not null, default: 'user']
+  HeightCm integer
+  WeightKg decimal
+  Level varchar
+  Goal varchar
+  PrivacyConsentAt timestamp [not null, note: 'kdy souhlasil se zásadami']
+  CreatedAt timestamp [not null]
+}
+
+Table Workouts {
+  Id integer [pk, increment]
+  UserId integer [not null, ref: > Users.Id]
+  Date date [not null]
+  Name varchar
+  Note text
+  DurationMin integer
+}
+
+Table Exercises {
+  Id integer [pk, increment]
+  Name varchar [not null, unique]
+  MuscleGroup varchar [not null]
+  Equipment varchar
+  Difficulty varchar
+  Description text
+  Rating integer [note: 'hodnocení 1 až 10']
+  Source varchar
+}
+
+Table WorkoutExercises {
+  Id integer [pk, increment]
+  WorkoutId integer [not null, ref: > Workouts.Id]
+  ExerciseId integer [not null, ref: > Exercises.Id]
+  OrderIndex integer [not null]
+}
+
+Table Sets {
+  Id integer [pk, increment]
+  WorkoutExerciseId integer [not null, ref: > WorkoutExercises.Id]
+  SetNumber integer [not null]
+  Reps integer [not null]
+  WeightKg decimal [not null, default: 0]
+}
+
+Table ChatMessages {
+  Id integer [pk, increment]
+  UserId integer [not null, ref: > Users.Id]
+  Role varchar [not null]
+  Content text [not null]
+  CreatedAt timestamp [not null]
+}
+
+Table WorkoutTemplates {
+  Id integer [pk, increment]
+  UserId integer [not null, ref: > Users.Id]
+  Name varchar [not null]
+  Note text
+  CreatedBy varchar [not null, default: 'user', note: 'user nebo ai']
+  CreatedAt timestamp [not null]
+}
+
+Table TemplateExercises {
+  Id integer [pk, increment]
+  TemplateId integer [not null, ref: > WorkoutTemplates.Id]
+  ExerciseId integer [not null, ref: > Exercises.Id]
+  OrderIndex integer [not null]
+  Sets integer [not null]
+  TargetReps varchar [not null, note: 'např. 6–8']
+  TargetWeightKg decimal
+}
+
+Table PlannedWorkouts {
+  Id integer [pk, increment]
+  UserId integer [not null, ref: > Users.Id]
+  TemplateId integer [not null, ref: > WorkoutTemplates.Id]
+  Date date [not null]
+  WorkoutId integer [ref: - Workouts.Id, note: 'vyplní se po uložení tréninku']
+}
