@@ -3,7 +3,7 @@ using MyWorkout.Api.Models;
 namespace MyWorkout.Api.Data;
 
 // Výchozí cviky, které se vloží do databáze při vytvoření tabulek.
-// Hodnocení a zdroj se doplní ve Správě aplikace (konzultace 17. 12.).
+// Hodnocení a zdroj se doplní ve Správě aplikace.
 public static class ExerciseSeed
 {
     public static readonly Exercise[] All =

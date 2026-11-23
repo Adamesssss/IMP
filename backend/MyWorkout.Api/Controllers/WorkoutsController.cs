@@ -110,7 +110,7 @@ public class WorkoutsController : ControllerBase
         _db.Workouts.Add(workout);
         await _db.SaveChangesAsync();
 
-        // Načteme trénink znovu i s názvy cviků a vrátíme ho (201 Created).
+        // Načte trénink znovu i s názvy cviků a vrátí ho (201 Created).
         var saved = await _db.Workouts
             .Include(w => w.WorkoutExercises).ThenInclude(we => we.Exercise)
             .Include(w => w.WorkoutExercises).ThenInclude(we => we.Sets)

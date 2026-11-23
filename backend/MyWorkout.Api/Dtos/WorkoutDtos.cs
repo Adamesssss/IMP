@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyWorkout.Api.Dtos;
 
-// ---------- Co posílá frontend při uložení tréninku ----------
+//Co posílá frontend při uložení tréninku 
 
 public class CreateWorkoutRequest
 {
@@ -42,7 +42,7 @@ public class CreateSetRequest
     public decimal? WeightKg { get; set; }
 }
 
-// ---------- Co backend vrací ----------
+//Co backend vrací
 
 // Řádek v seznamu tréninků.
 public class WorkoutListItemDto

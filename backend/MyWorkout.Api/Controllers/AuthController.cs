@@ -68,7 +68,7 @@ public class AuthController : ControllerBase
         var email = request.Email.Trim().ToLowerInvariant();
         var user = await _db.Users.SingleOrDefaultAsync(u => u.Email == email);
 
-        // Stejná hláška pro neexistující e-mail i špatné heslo (útočník nezjistí, které účty existují).
+        // Stejná hláška pro neexistující e-mail i špatné heslo (útočník nezjistí které účty existují).
         if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.PasswordHash))
             return Unauthorized(new { message = "Neplatný e-mail nebo heslo." });
 

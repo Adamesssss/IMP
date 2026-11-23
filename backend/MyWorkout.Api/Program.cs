@@ -8,14 +8,14 @@ using MyWorkout.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ---------- 1) Nastavení z konfigurace (User Secrets / proměnné prostředí) ----------
+//1) Nastavení z konfigurace (User Secrets / proměnné prostředí)
 var connectionString = builder.Configuration.GetConnectionString("Default")
     ?? throw new InvalidOperationException("Chybí ConnectionStrings:Default (nastav ho v User Secrets).");
 var jwtKey = builder.Configuration["Jwt:Key"];
 if (string.IsNullOrEmpty(jwtKey) || jwtKey.Length < 32)
     throw new InvalidOperationException("Jwt:Key musí mít aspoň 32 znaků (nastav ho v User Secrets).");
 
-// ---------- 2) Služby ----------
+//2) Služby 
 builder.Services.AddControllers();
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
@@ -26,7 +26,7 @@ builder.Services
     .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        // Názvy údajů v tokenu ("sub", "role") necháme tak, jak jsou.
+        // Názvy údajů v tokenu ("sub", "role") nechávám tak, jak jsou.
         options.MapInboundClaims = false;
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -64,7 +64,7 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// ---------- 3) Pořadí zpracování požadavku (middleware) ----------
+//3) Pořadí zpracování požadavku (middleware)
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
