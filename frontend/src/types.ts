@@ -57,7 +57,7 @@ export interface WorkoutDetail {
   exercises: WorkoutExercise[]
 }
 
-// Co posíláme při uložení nového tréninku.
+// Co posílá při uložení nového tréninku.
 export interface CreateWorkoutRequest {
   date: string
   name: string | null

@@ -65,6 +65,8 @@ export default function WorkoutsPage() {
   )
 }
 
+//obě funkce zajistují správnou češtinu
+
 // Čeština: 1 cvik, 2–4 cviky, 5+ cviků
 function pluralCviky(n: number) {
   if (n === 1) return 'cvik'

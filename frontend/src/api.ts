@@ -45,7 +45,7 @@ export async function apiFetch<T>(path: string, options: { method?: string; body
     throw new ApiError(0, ['Server neodpovídá. Běží backend?'])
   }
 
-  // Tělo odpovědi převedeme z JSON. Prázdné tělo nebo text, který není JSON, bereme jako null.
+  // Tělo odpovědi převedeme z JSON. Prázdné tělo nebo text, který není JSON bere jako null.
   const text = await response.text()
   let data: unknown = null
   try {

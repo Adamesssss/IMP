@@ -1,4 +1,4 @@
-// Pomocné funkce pro zobrazení čísel a dat česky.
+// Pomocné funkce pro zobrazení čísel a dat správně česky.
 
 // "2026-11-20" -> "20. 11. 2026"
 export function formatDate(isoDate: string): string {

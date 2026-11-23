@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router'
 import { ApiError } from '../api'
 import { useAuth } from '../authContext'
 
-// Stejná stránka slouží pro přihlášení i registraci (záložky jako v designu).
+// Stejná stránka slouží pro přihlášení i registraci (záložky v designu).
 export default function LoginPage({ mode }: { mode: 'login' | 'register' }) {
   const { user, login, register } = useAuth()
   const navigate = useNavigate()
@@ -18,10 +18,10 @@ export default function LoginPage({ mode }: { mode: 'login' | 'register' }) {
   const [errors, setErrors] = useState<string[]>([])
   const [sending, setSending] = useState(false)
 
-  // Přihlášeného uživatele rovnou pošleme na tréninky.
+  // Přihlášeného uživatele rovnou pošlu na tréninky.
   if (user) return <Navigate to="/treninky" replace />
 
-  // Kontrola ve frontendu jen pro pohodlí uživatele. Skutečnou kontrolu dělá backend.
+  // Kontrola ve frontendu jen pro pohodlí uživatele. Kontrolu jako takovou dělá backend.
   function validate(): string[] {
     const list: string[] = []
     if (!email.trim()) list.push('Zadej e-mail.')

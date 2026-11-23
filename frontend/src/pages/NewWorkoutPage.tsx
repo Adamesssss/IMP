@@ -4,8 +4,8 @@ import { ApiError, apiFetch } from '../api'
 import { formatKg, todayIso } from '../format'
 import type { CreateWorkoutRequest, Exercise, WorkoutDetail } from '../types'
 
-// Série a cviky ve formuláři držíme jako text (tak, jak je uživatel napsal).
-// Na čísla je převedeme až při uložení.
+// Série a cviky ve formuláři držím jako text (tak jak je uživatel napsal).
+// Na čísla je převedu až při uložení.
 interface SetForm {
   reps: string
   weightKg: string
@@ -30,7 +30,7 @@ export default function NewWorkoutPage() {
   const [showFieldErrors, setShowFieldErrors] = useState(false)
   const [saving, setSaving] = useState(false)
 
-  // Po otevření stránky načteme databázi cviků pro výběr.
+  // Po otevření stránky načtu databázi cviků pro výběr.
   useEffect(() => {
     apiFetch<Exercise[]>('/api/exercises')
       .then(setAllExercises)

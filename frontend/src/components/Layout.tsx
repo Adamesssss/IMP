@@ -1,7 +1,7 @@
 import { NavLink, Outlet } from 'react-router'
 import { useAuth } from '../authContext'
 
-// Položky menu podle designu. Hotové jsou zatím jen Tréninky, ostatní přibudou podle harmonogramu.
+// Položky menu podle designu. Hotové jsou zatím jen Tréninky, zbytek bude ještě přibývat
 const MENU = [
   { label: 'Hlavní stránka', to: null },
   { label: 'Tréninky', to: '/treninky' },

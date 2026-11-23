@@ -6,7 +6,7 @@ import type { AuthResponse, User } from './types'
 // Drží informaci o přihlášeném uživateli pro celou aplikaci.
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
-  // Na začátku nevíme, jestli je uložený token platný – zeptáme se backendu.
+  // Na začátku neví jestli je uložený token platný – zeptá se backendu.
   const [loading, setLoading] = useState(getToken() !== null)
 
   function logout() {
